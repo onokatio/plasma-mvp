@@ -60,6 +60,17 @@ class Chain(object):
             if blknum == 0:
                 continue
 
+            print("blocknum {0}".format(blknum))
+            print("blocks {0}".format(self.blocks))
+
+            if not self.blocks:
+                print("blocks are empty")
+                return
+
+            if not blknum in self.blocks:
+                print("blocks num are empty")
+                return
+            print("self blocks {0}".format(self.blocks[blknum]))
             input_tx = self.blocks[blknum].transaction_set[txindex]
 
             if oindex == 0:
@@ -87,11 +98,19 @@ class Chain(object):
 
     def get_transaction(self, utxo_id):
         (blknum, txindex, _) = decode_utxo_id(utxo_id)
+        print("blocks {0}".format(self.blocks))
+        if not self.blocks:
+            print("blocks are empty")
+            return {}
         return self.blocks[blknum].transaction_set[txindex]
 
     def mark_utxo_spent(self, utxo_id):
         (_, _, oindex) = decode_utxo_id(utxo_id)
         tx = self.get_transaction(utxo_id)
+        print("tx {0}".format(tx))
+        if not tx:
+            print("tx is empty")
+            return
         if oindex == 0:
             tx.spent1 = True
         else:
