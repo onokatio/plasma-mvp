@@ -58,8 +58,8 @@ def sendtx(client,
            blknum1, txindex1, oindex1,
            blknum2, txindex2, oindex2,
            cur12,
-           amount1, newowner1,
-           amount2, newowner2,
+           newowner1, amount1,
+           newowner2, amount2,
            key1, key2):
     if cur12 == "0x0":
         cur12 = NULL_ADDRESS
@@ -68,7 +68,8 @@ def sendtx(client,
     if newowner2 == "0x0":
         newowner2 = NULL_ADDRESS
 
-    # Form a transaction
+    print("newowner1 {0}".format(newowner1))
+    print("amount1 {0}".format(amount1))
     tx = Transaction(blknum1, txindex1, oindex1,
                      blknum2, txindex2, oindex2,
                      utils.normalize_address(cur12),
