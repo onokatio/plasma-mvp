@@ -33,7 +33,8 @@ class ChildChain(object):
         self.chain.add_block(deposit_block)
 
     def apply_transaction(self, tx):
-        self.chain.validate_transaction(tx, self.current_block.spent_utxos)
+        print("spent_utxos {0}".format(self.current_block.spent_utxos))
+        #self.chain.validate_transaction(tx, self.current_block.spent_utxos)
         self.current_block.add_transaction(tx)
         return encode_utxo_id(self.current_block.number, len(self.current_block.transaction_set) - 1, 0)
 
