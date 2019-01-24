@@ -67,7 +67,7 @@ class Chain(object):
                 print("blocks are empty")
                 return
 
-            if not blknum in self.blocks:
+            if blknum not in self.blocks:
                 print("blocks num are empty")
                 return
             print("self blocks {0}".format(self.blocks[blknum]))
