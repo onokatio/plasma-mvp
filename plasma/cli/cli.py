@@ -92,7 +92,7 @@ def submitblock(client, key):
 
     # Get the current block, already decoded by client
     block = client_call(client.get_current_block)
-
+    print("block number {0}".format(block.number))
     # Sign the block
     block.make_mutable()
     normalized_key = utils.normalize_key(key)
