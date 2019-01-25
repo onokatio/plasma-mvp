@@ -25,6 +25,7 @@ class Chain(object):
 
             # Insert the block into the chain.
             self._apply_block(block)
+            print("add_block self.blocks {0}".format(self.blocks))
 
             # Update the head state.
             if is_next_child_block:
@@ -66,11 +67,17 @@ class Chain(object):
             if not self.blocks:
                 print("blocks are empty")
                 return
-
             if blknum not in self.blocks:
-                print("blocks num are empty")
+                print("block num not in dictionary")
                 return
             print("self blocks {0}".format(self.blocks[blknum]))
+
+            if not self.blocks[blknum].transaction_set:
+                print("transaction_set is empty")
+                return
+            print("transaction_set {0}".format(self.blocks[blknum].transaction_set))
+            print("transaction_set list {0}".format(self.blocks[blknum].transaction_set[txindex]))
+
             input_tx = self.blocks[blknum].transaction_set[txindex]
 
             if oindex == 0:
@@ -101,6 +108,12 @@ class Chain(object):
         print("blocks {0}".format(self.blocks))
         if not self.blocks:
             print("blocks are empty")
+            return {}
+        if blknum not in self.blocks:
+            print("block num not in dictionary")
+            return {}
+        if not self.blocks[blknum].transaction_set:
+            print("transaction_set is empty")
             return {}
         return self.blocks[blknum].transaction_set[txindex]
 
