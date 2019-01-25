@@ -39,10 +39,6 @@ class Client(object):
     def deposit(self, amount, owner):
         print("Owner Address {0}".format(owner))
         self.root_chain.deposit(transact={'from': owner, 'value': amount})
-        #self.root_chain.transact({
-        #            'from': owner,
-        #            'value': amount
-        #    }).deposit()
 
         #deposit_block_number = 1
         #deposit_block = self.child_chain.get_block(deposit_block_number)
