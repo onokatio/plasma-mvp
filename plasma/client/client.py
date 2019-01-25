@@ -40,10 +40,6 @@ class Client(object):
         print("Owner Address {0}".format(owner))
         self.root_chain.deposit(transact={'from': owner, 'value': amount})
 
-        #deposit_block_number = 1
-        #deposit_block = self.child_chain.get_block(deposit_block_number)
-        #print("len {0}".format(len(deposit_block.transaction_set)))
-
     def apply_transaction(self, transaction):
         self.child_chain.apply_transaction(transaction)
 
