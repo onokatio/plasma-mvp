@@ -9,6 +9,7 @@ from plasma.root_chain.deployer import Deployer
 from .child_chain_service import ChildChainService
 from eth_utils import address
 
+
 class Client(object):
 
     def __init__(self, root_chain_provider=HTTPProvider('http://localhost:8545'), child_chain_url="http://localhost:8546/jsonrpc"):
