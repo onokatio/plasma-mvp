@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/onokatio/plasma-mvp.svg?branch=master)](https://travis-ci.org/onokatio/plasma-mvp)
+
+This is a fork from plasma-mvp for hierarchical plasma.
+
 # Notice!
 This is an old research repo. No active work is being done here. Efforts in the direction of production-ready MVP plasma chain (MoreVP, ERC20, audits) are in https://github.com/omisego/plasma-contracts.
 
