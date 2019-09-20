@@ -25,6 +25,7 @@ clean-build:
 	rm -fr build/
 	rm -fr dist/
 	rm -fr *.egg-info
+	rm -fr venv/lib/python3.6/site-packages/plasma-0.0.0-py3.6.egg
 
 .PHONY: clean-pyc
 clean-pyc:
@@ -40,7 +41,7 @@ lint:
 
 .PHONY: test
 test:
-	python -m pytest
+	python -m pytest --cov=
 	find . -name '.pytest_cache' -exec rm -rf {} +
 
 .PHONY: dev
