@@ -16,13 +16,13 @@ setup(
     packages=find_packages(exclude=('tests')),
     include_package_data=True,
     install_requires=[
-        'ethereum==2.3.0',
-        'web3==4.5.0',
+        'ethereum==2.3.2',
+        'web3==5.1.0',
         'werkzeug==0.14.1',
-        'json-rpc==1.10.8',
+        'json-rpc==1.12.1',
         'py-solc',
-        'click==6.7',
         'pytest-cov',
+        'click==7.0',
         'flake8==3.5.0',
         'rlp==0.6.0'
     ],
