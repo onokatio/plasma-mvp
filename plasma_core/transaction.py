@@ -21,6 +21,8 @@ class Transaction(rlp.Serializable):
         ('amount2', big_endian_int),
         ('sig1', binary),
         ('sig2', binary),
+        ('xontractFlag', big_endian_int),
+        ('state', binary),
     ]
 
     def __init__(self,
@@ -30,7 +32,9 @@ class Transaction(rlp.Serializable):
                  newowner1, amount1,
                  newowner2, amount2,
                  sig1=NULL_SIGNATURE,
-                 sig2=NULL_SIGNATURE):
+                 sig2=NULL_SIGNATURE,
+                 contractFlag=0,
+                 state=0):
         # Input 1
         self.blknum1 = blknum1
         self.txindex1 = txindex1
