@@ -16,7 +16,7 @@ setup(
     packages=find_packages(exclude=('tests')),
     include_package_data=True,
     install_requires=[
-        'ethereum==2.3.0',
+        'ethereum==2.3.2',
         'web3==5.1.0',
         'werkzeug==0.14.1',
         'json-rpc==1.10.8',
