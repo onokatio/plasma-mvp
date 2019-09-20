@@ -2,7 +2,7 @@ import rlp
 from rlp.sedes import big_endian_int, binary
 from ethereum import utils
 from plasma_core.utils.signatures import get_signer, sign
-from plasma_core.constants import NULL_SIGNATURE
+from plasma_core.constants import NULL_SIGNATURE, NULL_BYTE
 
 
 class Transaction(rlp.Serializable):
@@ -34,7 +34,7 @@ class Transaction(rlp.Serializable):
                  sig1=NULL_SIGNATURE,
                  sig2=NULL_SIGNATURE,
                  contractFlag=0,
-                 state=0):
+                 state=NULL_BYTE):
         # Input 1
         self.blknum1 = blknum1
         self.txindex1 = txindex1
@@ -63,6 +63,7 @@ class Transaction(rlp.Serializable):
         self.spent1 = False
         self.spent2 = False
 
+        # UTXO contract
         self.contractFlag = contractFlag
         self.state = state
 
