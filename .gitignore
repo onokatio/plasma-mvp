@@ -15,8 +15,10 @@ dist/
 .pytest_cache/
 contract_data/
 
+# venv
+venv/
+
+.coverage
 *.pyc
 build/
 
-# venv
-venv/
