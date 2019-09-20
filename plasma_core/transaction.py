@@ -63,6 +63,9 @@ class Transaction(rlp.Serializable):
         self.spent1 = False
         self.spent2 = False
 
+        self.contractFlag = contractFlag
+        self.state = state
+
     @property
     def hash(self):
         return utils.sha3(self.encoded)
