@@ -21,7 +21,7 @@ class Transaction(rlp.Serializable):
         ('amount2', big_endian_int),
         ('sig1', binary),
         ('sig2', binary),
-        ('xontractFlag', big_endian_int),
+        ('contractFlag', big_endian_int),
         ('state', binary),
     ]
 
