@@ -40,7 +40,7 @@ lint:
 
 .PHONY: test
 test:
-	python -m pytest
+	python -m pytest --cov=
 	find . -name '.pytest_cache' -exec rm -rf {} +
 
 .PHONY: dev
