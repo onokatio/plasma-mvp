@@ -264,22 +264,21 @@ $ python ./plasma/child_chain/server.py
 # deposit 100 token to child chain.
 # it can used in child chain at `1 0 0`(blknum1 txindex1 oindex1)
 python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
+
+# deposit 100 token to child chain.
+# it can used in child chain at `2 0 0`(blknum1 txindex1 oindex1)
+python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 ```
 
-3. Send a transaction:
-```
-omg sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 45 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304'
-```
-
-or create UTXO contract
+3. Create UTXO contract and use
 
 ```
 # deposit 50
 python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 45 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[]}'
 # state update
-python plasma/cli/cli.py sendtx 2 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},}}'
-# state update
-python plasma/cli/cli.py sendtx 3 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312178},]}'
+python plasma/cli/cli.py sendtx 3 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},}}'
+# deposit
+python plasma/cli/cli.py sendtx 2 0 0 4 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312178},]}'
 ```
 
 4.  Submit the block:
