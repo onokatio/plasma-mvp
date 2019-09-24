@@ -51,10 +51,10 @@ def deposit(client, amount, address):
 @click.argument('amount1', type=int)
 @click.argument('newowner2')
 @click.argument('amount2', type=int)
-@click.argument('contractflag', required=False)
-@click.argument('state', required=False)
 @click.argument('key1')
 @click.argument('key2', required=False)
+@click.argument('contractflag', required=False)
+@click.argument('state', required=False)
 @click.pass_obj
 def sendtx(client,
            blknum1, txindex1, oindex1,
@@ -62,7 +62,6 @@ def sendtx(client,
            cur12,
            newowner1, amount1,
            newowner2, amount2,
-           key1, key2):
            key1, key2,
            contractflag, state):
     if cur12 == "0x0":
