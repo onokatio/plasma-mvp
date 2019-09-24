@@ -2,6 +2,14 @@
 
 This is a fork from plasma-mvp for hierarchical plasma.
 
+# Build Environment
+
+```
+$ pyenv install 3.6.9
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
+
 # Notice!
 This is an old research repo. No active work is being done here. Efforts in the direction of production-ready MVP plasma chain (MoreVP, ERC20, audits) are in https://github.com/omisego/plasma-contracts.
 
