@@ -270,15 +270,20 @@ python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 ```
 
+blknum1, txindex1, oindex1 is a point of UTXO. blknum is block number, txindex is transaction number, and oindex is output number of transaction.
+There are two point (such as blknum1 blknum2) and two newowner. So we can use two input and two outpu maximam.
+
 3. Create UTXO contract and use
 
 ```
 # deposit 50
 python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 45 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[]}'
 # state update
-python plasma/cli/cli.py sendtx 3 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},}}'
-# deposit
-python plasma/cli/cli.py sendtx 2 0 0 4 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312178},]}'
+python plasma/cli/cli.py sendtx 3 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},]}'
+# deposit from block2 txindex0 UTXO
+python plasma/cli/cli.py sendtx 2 0 0 4 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
+# exit 10 to 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
+python plasma/cli/cli.py sendtx 5 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 90 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 10 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
 ```
 
 4.  Submit the block:
