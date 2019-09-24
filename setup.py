@@ -22,7 +22,7 @@ setup(
         'json-rpc==1.10.8',
         'py-solc',
         'pytest-cov',
-        'click==7.0',
+        'click==6.7',
         'flake8==3.5.0',
         'rlp==0.6.0'
     ],
