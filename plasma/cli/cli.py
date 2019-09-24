@@ -60,8 +60,9 @@ def sendtx(client,
            blknum1, txindex1, oindex1,
            blknum2, txindex2, oindex2,
            cur12,
-           amount1, newowner1,
-           amount2, newowner2,
+           newowner1, amount1,
+           newowner2, amount2,
+           key1, key2):
            key1, key2,
            contractflag, state):
     if cur12 == "0x0":
@@ -75,7 +76,8 @@ def sendtx(client,
     if state == "0x0":
         state = NULL_BYTE
 
-    # Form a transaction
+    print("newowner1 {0}".format(newowner1))
+    print("amount1 {0}".format(amount1))
     tx = Transaction(blknum1, txindex1, oindex1,
                      blknum2, txindex2, oindex2,
                      utils.normalize_address(cur12),
@@ -99,7 +101,7 @@ def submitblock(client, key):
 
     # Get the current block, already decoded by client
     block = client_call(client.get_current_block)
-
+    print("block number {0}".format(block.number))
     # Sign the block
     block.make_mutable()
     normalized_key = utils.normalize_key(key)
