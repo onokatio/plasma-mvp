@@ -1,6 +1,6 @@
 import click
 from ethereum import utils
-from plasma_core.constants import NULL_ADDRESS
+from plasma_core.constants import NULL_ADDRESS, NULL_BYTE
 from plasma_core.transaction import Transaction
 from plasma_core.utils.utils import confirm_tx
 from plasma_core.utils.transactions import encode_utxo_id
@@ -51,6 +51,8 @@ def deposit(client, amount, address):
 @click.argument('amount1', type=int)
 @click.argument('newowner2')
 @click.argument('amount2', type=int)
+@click.argument('contractflag', required=False)
+@click.argument('state', required=False)
 @click.argument('key1')
 @click.argument('key2', required=False)
 @click.pass_obj
@@ -60,20 +62,26 @@ def sendtx(client,
            cur12,
            amount1, newowner1,
            amount2, newowner2,
-           key1, key2):
+           key1, key2,
+           contractflag, state):
     if cur12 == "0x0":
         cur12 = NULL_ADDRESS
     if newowner1 == "0x0":
         newowner1 = NULL_ADDRESS
     if newowner2 == "0x0":
         newowner2 = NULL_ADDRESS
+    if contractflag == "0x0":
+        contractflag = 0
+    if state == "0x0":
+        state = NULL_BYTE
 
     # Form a transaction
     tx = Transaction(blknum1, txindex1, oindex1,
                      blknum2, txindex2, oindex2,
                      utils.normalize_address(cur12),
                      utils.normalize_address(newowner1), amount1,
-                     utils.normalize_address(newowner2), amount2)
+                     utils.normalize_address(newowner2), amount2,
+                     contractflag, state)
 
     # Sign it
     if key1:
