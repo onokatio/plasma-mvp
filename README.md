@@ -318,6 +318,10 @@ UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 4-0-0(50wei)
 
 ```
 python plasma/cli/cli.py sendtx 4 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
+
+# or
+
+python plasma/cli/cli.py --gc --gcnum 4 submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
 UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei)
