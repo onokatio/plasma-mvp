@@ -311,8 +311,11 @@ UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 5-0-0(50ETH)
 ### exit 10 to 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 
 ```
-python plasma/cli/cli.py sendtx 5 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 90 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 10 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
+python plasma/cli/cli.py sendtx 5 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 40 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 10 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
 ```
+
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50ETH) 6-0-1(10)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40ETH)
 
 4.  Submit the block:
 ```
@@ -322,7 +325,10 @@ python ./plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a
 5. Withdraw the original deposit (this is a double spend!):
 
 ```
-python ./plasma/cli/cli.py withdrawdeposit 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 1 100
+python ./plasma/cli/cli.py withdrawdeposit 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 1 60
 ```
+
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40ETH)
 
 Note: The functionality to challenge double spends from the cli is still being worked on.
