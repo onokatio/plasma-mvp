@@ -8,7 +8,6 @@ from plasma_core.utils.transactions import get_deposit_tx, encode_utxo_id
 from plasma_core.transaction import Transaction, UnsignedTransaction
 from plasma_core.constants import NULL_ADDRESS
 from plasma.client.client import Client
-from .root_event_listener import RootEventListener
 
 class GrandChildChain(object):
 
