@@ -14,11 +14,13 @@ CONTEXT_SETTINGS = dict(
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
-@click.option('--grandchild', is_flag=True, help='Call grandchild chain')
+@click.option('--gc', is_flag=True, help='Call grandchild chain')
+@click.option('--gcnum', default=0, help='Plasma chain block number which is grand child chain contract.')
 @click.pass_context
-def cli(ctx, grandchild):
+def cli(ctx, grandchild,gcnum):
+    ctx.ob['gcnum'] = gcnum
     if grandchild:
-        ctx.obj = Client(child_chain_url="http://localhost:8547/jsonrpc")
+        ctx.obj['client'] = Client(child_chain_url="http://localhost:8547/jsonrpc")
     else:
         ctx.obj = Client()
 
@@ -38,7 +40,8 @@ def client_call(fn, argz=(), successmessage=""):
 @click.argument('amount', required=True, type=int)
 @click.argument('address', required=True)
 @click.pass_obj
-def deposit(client, amount, address):
+def deposit(obj, amount, address):
+    client = obj['client']
     client.deposit(amount, address)
     print("Deposited {0} to {1}".format(amount, address))
 
@@ -60,7 +63,7 @@ def deposit(client, amount, address):
 @click.argument('contractflag', required=False)
 @click.argument('state', required=False)
 @click.pass_obj
-def sendtx(client,
+def sendtx(obj,
            blknum1, txindex1, oindex1,
            blknum2, txindex2, oindex2,
            cur12,
@@ -68,6 +71,7 @@ def sendtx(client,
            newowner2, amount2,
            key1, key2,
            contractflag, state):
+    client = obj['client']
     if cur12 == "0x0":
         cur12 = NULL_ADDRESS
     if newowner1 == "0x0":
@@ -100,8 +104,9 @@ def sendtx(client,
 @cli.command()
 @click.argument('key', required=True)
 @click.pass_obj
-def submitblock(client, key):
+def submitblock(obj, key):
 
+    client = obj['client']
     # Get the current block, already decoded by client
     block = client_call(client.get_current_block)
     print("block number {0}".format(block.number))
@@ -120,10 +125,11 @@ def submitblock(client, key):
 @click.argument('key1')
 @click.argument('key2', required=False)
 @click.pass_obj
-def withdraw(client,
+def withdraw(obj,
              blknum, txindex, oindex,
              key1, key2):
 
+    client = obj['client']
     # Get the transaction's block, already decoded by client
     block = client_call(client.get_block, [blknum])
 
@@ -148,7 +154,8 @@ def withdraw(client,
 @click.argument('blknum', required=True, type=int)
 @click.argument('amount', required=True, type=int)
 @click.pass_obj
-def withdrawdeposit(client, owner, blknum, amount):
+def withdrawdeposit(obj, owner, blknum, amount):
+    client = obj['client']
     deposit_pos = encode_utxo_id(blknum, 0, 0)
     client.withdraw_deposit(owner, deposit_pos, amount)
     print("Submitted withdrawal")
@@ -157,7 +164,8 @@ def withdrawdeposit(client, owner, blknum, amount):
 @cli.command()
 @click.argument('account', required=True)
 @click.pass_obj
-def finalize_exits(client, account):
+def finalize_exits(obj, account):
+    client = obj['client']
     client.finalize_exits(account)
     print("Submitted finalizeExits")
 
@@ -166,7 +174,8 @@ def finalize_exits(client, account):
 @click.argument('blknum', required=True, type=int)
 @click.argument('key', required=True)
 @click.pass_obj
-def confirm_sig(client, blknum, key):
+def confirm_sig(obj, blknum, key):
+    client = obj['client']
     block = client_call(client.get_block, [blknum])
     tx = client_call(client.get_transaction, [blknum, 0])
     _key = utils.normalize_key(key)
@@ -181,7 +190,8 @@ def confirm_sig(client, blknum, key):
 @click.argument('confirm_sig_hex', required=True)
 @click.argument('account', required=True)
 @click.pass_obj
-def challenge_exit(client, blknum, txindex, oindex, confirm_sig_hex, account):
+def challenge_exit(obj, blknum, txindex, oindex, confirm_sig_hex, account):
+    client = obj['client']
     confirmSig = utils.decode_hex(confirm_sig_hex)
     client.challenge_exit(blknum, txindex, oindex, confirmSig, account)
     print("Submitted challenge exit")
