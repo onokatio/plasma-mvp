@@ -39,7 +39,7 @@ class Client(object):
 
     def deposit(self, amount, owner):
         print("Owner Address {0}".format(owner))
-        self.root_chain.deposit().transact({'from': owner, 'value': amount})
+        self.root_chain.deposit(transact={'from': owner, 'value': amount})
 
     def apply_transaction(self, transaction):
         self.child_chain.apply_transaction(transaction)
