@@ -26,14 +26,13 @@ class GrandChildChain(object):
         utxo_id = event_args['utxoPos']
         self.chain.mark_utxo_spent(utxo_id)
 
-    def apply_deposit(self, event):
+    def apply_deposit_utxo(self, deposit_tx):
         print("apply deposit {0}".format(event['args']))
-        event_args = event['args']
-        owner = event_args['depositor']
-        amount = event_args['amount']
-        blknum = event_args['depositBlock']
+        #owner = event_args['depositor']
+        #amount = event_args['amount']
+        #blknum = event_args['depositBlock']
 
-        deposit_tx = get_deposit_tx(owner, amount)
+        #deposit_tx = get_deposit_tx(owner, amount)
         deposit_block = Block([deposit_tx], number=blknum)
         self.chain.add_block(deposit_block)
 

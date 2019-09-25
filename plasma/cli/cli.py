@@ -50,6 +50,22 @@ def deposit(obj, amount, address):
 
 
 @cli.command()
+@click.argument('blknum', type=int)
+@click.argument('txindex', type=int)
+@click.argument('oindex', type=int)
+@click.pass_obj
+def apply_deposit_utxo(obj,
+        blknum, txindex, oindex):
+    # tell lower chain that there is deposit transaction.
+
+    deposit_pos = encode_utxo_id(blknum, txindex, oindex)
+    deposit_tx = obj['client'].get_transaction(blknum,txindex)
+    if deposit_tx.contractFlag != 0x00:
+        obj['client'].apply_deposit_utxo(deposit_tx)
+    else:
+        print("Error: contractFlag is not 0x00.")
+
+@cli.command()
 @click.argument('blknum1', type=int)
 @click.argument('txindex1', type=int)
 @click.argument('oindex1', type=int)

@@ -44,6 +44,9 @@ class Client(object):
     def apply_transaction(self, transaction):
         self.child_chain.apply_transaction(transaction)
 
+    def apply_deposit_utxo(self, transaction):
+        self.child_chain.apply_deposit_utxo(transaction)
+
     def submit_block(self, block):
         self.child_chain.submit_block(block)
 
