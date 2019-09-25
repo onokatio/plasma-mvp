@@ -14,9 +14,13 @@ CONTEXT_SETTINGS = dict(
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
+@click.option('--grandchild', is_flag=True, help='Call grandchild chain')
 @click.pass_context
-def cli(ctx):
-    ctx.obj = Client()
+def cli(ctx, grandchild):
+    if grandchild:
+        ctx.obj = Client(child_chain_url="http://localhost:8547/jsonrpc")
+    else:
+        ctx.obj = Client()
 
 
 def client_call(fn, argz=(), successmessage=""):
