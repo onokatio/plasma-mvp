@@ -16,7 +16,7 @@ child_chain = GrandChildChain(AUTHORITY['address'], "0x4B3eC6c9dC67079E82152d6D5
 @Request.application
 def application(request):
     # Dispatcher is dictionary {<method_name>: callable}
-    dispatcher["submit_block"] = lambda block: child_chain.submit_block(rlp.decode(utils.decode_hex(block), Block))
+    dispatcher["submit_block_utxo"] = lambda block, gcnum: child_chain.submit_block_utxo(rlp.decode(utils.decode_hex(block), Block), gcnum)
     dispatcher["apply_transaction"] = lambda transaction: child_chain.apply_transaction(rlp.decode(utils.decode_hex(transaction), Transaction))
     dispatcher["get_transaction"] = lambda blknum, txindex: rlp.encode(child_chain.get_transaction(encode_utxo_id(blknum, txindex, 0)), Transaction).hex()
     dispatcher["get_current_block"] = lambda: rlp.encode(child_chain.get_current_block(), Block).hex()

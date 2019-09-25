@@ -47,6 +47,9 @@ class Client(object):
     def submit_block(self, block):
         self.child_chain.submit_block(block)
 
+    def submit_block_utxo(self, block, gcnum):
+        self.child_chain.submit_block_utxo(block, gcnum)
+
     def withdraw(self, blknum, txindex, oindex, tx, proof, sigs):
         utxo_pos = encode_utxo_id(blknum, txindex, oindex)
         encoded_transaction = rlp.encode(tx, UnsignedTransaction)

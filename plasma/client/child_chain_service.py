@@ -31,6 +31,9 @@ class ChildChainService(object):
     def submit_block(self, block):
         return self.send_request("submit_block", [rlp.encode(block, Block).hex()])
 
+    def submit_block_utxo(self, block, gcnum):
+        return self.send_request("submit_block_utxo", [rlp.encode(block, Block).hex(), gcnum])
+
     def get_transaction(self, blknum, txindex):
         return self.send_request("get_transaction", [blknum, txindex])
 

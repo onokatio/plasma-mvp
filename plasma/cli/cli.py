@@ -17,11 +17,13 @@ CONTEXT_SETTINGS = dict(
 @click.option('--gc', is_flag=True, help='Call grandchild chain')
 @click.option('--gcnum', default=0, help='Plasma chain block number which is grand child chain contract.')
 @click.pass_context
-def cli(ctx, gc,gcnum):
+def cli(ctx, gc, gcnum):
     ctx.obj = {}
+    ctx.obj['gc'] = gc
     ctx.obj['gcnum'] = gcnum
     if gc:
         ctx.obj['client'] = Client(child_chain_url="http://localhost:8547/jsonrpc")
+        print("cli is now grandchild mode")
     else:
         ctx.obj = Client()
 
@@ -116,7 +118,10 @@ def submitblock(obj, key):
     normalized_key = utils.normalize_key(key)
     block.sign(normalized_key)
 
-    client_call(client.submit_block, [block], "Submitted current block")
+    if obj['gc']:
+        client_call(client.submit_block_utxo, [block,obj['gcnum']], "Submitted current block to UTXO contract")
+    else:
+        client_call(client.submit_block, [block], "Submitted current block")
 
 
 @cli.command()

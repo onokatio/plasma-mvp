@@ -44,13 +44,25 @@ class GrandChildChain(object):
         return encode_utxo_id(self.current_block.number, len(self.current_block.transaction_set) - 1, 0)
 
     def submit_block(self, block):
+        print("error")
+
+    def submit_block_utxo(self, block, gcnum):
+        client = Client()
+
         self.chain.add_block(block)
 
+        #self.chain.blocks[block.number]
+
+        if block.number == 0:
+            state = {}
+        else:
+            state = client.get_block(block.number-1).transaction_set[0].state
+
         # Submit state update from grand child chain to child chain
-        state = []
+        #state = []
         state.append(base64.b64encode(block.merkle.root).decode('utf-8'))
 
-        tx = Transaction(4, 0, 0,
+        tx = Transaction(gcnum, 0, 0,
                          0, 0, 0,
                          utils.normalize_address(NULL_ADDRESS),
                          utils.normalize_address(self.utxo_contract), 50,
@@ -58,7 +70,6 @@ class GrandChildChain(object):
                          0x01, json.dumps(state))
         tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))
 
-        client = Client()
         client.apply_transaction(tx)
         print("Sent state update transaction")
 
