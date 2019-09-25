@@ -261,11 +261,11 @@ $ python ./plasma/child_chain/server.py
 
 2. Start by depositing:
 ```
-# deposit 100 token to child chain.
+# deposit 100 wei to child chain.
 # it can used in child chain at `1 0 0`(blknum1 txindex1 oindex1)
 python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 
-# deposit 100 token to child chain.
+# deposit 100 wei to child chain.
 # it can used in child chain at `2 0 0`(blknum1 txindex1 oindex1)
 python plasma/cli/cli.py deposit 100 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 ```
@@ -281,12 +281,12 @@ There are two point (such as blknum1 blknum2) and two newowner. So we can use tw
 python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 50 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 50 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[]}'
 ```
 
-0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has 100ETH at first.
-Then, it send 45 ETH to 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26.
+0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has 100wei at first.
+Then, it send 45wei to 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26.
 
 
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50ETH)
-UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 3-0-0(50ETH)
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 3-0-0(50wei)
 
 a-b-c means blknum-txindex-oindex.
 
@@ -296,8 +296,8 @@ a-b-c means blknum-txindex-oindex.
 python plasma/cli/cli.py sendtx 3 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},]}'
 ```
 
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50ETH)
-UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 4-0-0(50ETH)
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 4-0-0(50wei)
 
 ### state update
 
@@ -305,8 +305,8 @@ UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 4-0-0(50ETH)
 python plasma/cli/cli.py sendtx 4 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 50 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
 ```
 
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50ETH)
-UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 5-0-0(50ETH)
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 5-0-0(50wei)
 
 ### exit 10 to 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
 
@@ -314,8 +314,8 @@ UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 5-0-0(50ETH)
 python plasma/cli/cli.py sendtx 5 0 0 0 0 0 0x0 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 40 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 10 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[{"root": 0x1 , "timestamp": 1569312178},{"root": 0x1 , "timestamp": 1569312179},]}'
 ```
 
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50ETH) 6-0-1(10)
-UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40ETH)
+UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei) 6-0-1(10wei)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40wei)
 
 4.  Submit the block:
 ```
@@ -329,6 +329,6 @@ python ./plasma/cli/cli.py withdrawdeposit 0xfd02EcEE62797e75D86BCff1642EB0844af
 ```
 
 UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 
-UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40ETH)
+UTXO that 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 has : 6-0-0(40wei)
 
 Note: The functionality to challenge double spends from the cli is still being worked on.
