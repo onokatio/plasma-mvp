@@ -10,6 +10,21 @@ $ python3 -m venv venv
 $ source venv/bin/activate
 ```
 
+
+# Port
+
+Child Chain operator: 8546
+Grand Child Chain operator: 8547
+
+# directory structure
+
+`contract_data` : ABI
+`plasma_core/` : plasma data structure library. define block and transaction.
+`plasma/root_chain` : Solidity contract
+`plasma/child_chain` : Child chain operator. Run as jsonrpc server. It can also makes transaction.
+`plasma/client` : Python library to call `plasma/child_chain` server.
+`plasma/cli` : command line tool. It just use client library.
+
 # UTXO contract state
 
 ```
