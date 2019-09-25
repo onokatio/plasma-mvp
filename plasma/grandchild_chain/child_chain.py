@@ -53,10 +53,15 @@ class GrandChildChain(object):
 
         #self.chain.blocks[block.number]
 
-        if block.number == 0:
-            state = {}
+        #current_parent_block = client.get_current_block_num()
+
+        #print("block number is ", block.number)
+        #print("grandchild block number is ", current_parent_block)
+        if gcnum == 0:
+            state = []
         else:
-            state = client.get_block(block.number-1).transaction_set[0].state
+            #state = client.get_block(block.number-1000).transaction_set[0].state
+            state = client.get_block(gcnum).transaction_set[0].state
 
         # Submit state update from grand child chain to child chain
         #state = []

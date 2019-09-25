@@ -25,7 +25,7 @@ def cli(ctx, gc, gcnum):
         ctx.obj['client'] = Client(child_chain_url="http://localhost:8547/jsonrpc")
         print("cli is now grandchild mode")
     else:
-        ctx.obj = Client()
+        ctx.obj['client'] = Client()
 
 
 def client_call(fn, argz=(), successmessage=""):
