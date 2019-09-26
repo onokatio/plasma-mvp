@@ -58,3 +58,7 @@ class ChildChain(object):
 
     def get_current_block(self):
         return self.current_block
+
+    def withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs):
+        # check and exit.
+        

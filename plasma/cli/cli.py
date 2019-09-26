@@ -171,8 +171,8 @@ def withdraw(obj,
     if obj['gc']:
         client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
     else:
-        client.withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs)
-    print("Submitted withdrawal")
+        Client().withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs)
+    print("Submitted withdraw")
 
 
 @cli.command()
