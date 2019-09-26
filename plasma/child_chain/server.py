@@ -23,7 +23,11 @@ def application(request):
     dispatcher["get_current_block"] = lambda: rlp.encode(child_chain.get_current_block(), Block).hex()
     dispatcher["get_current_block_num"] = lambda: child_chain.get_current_block_num()
     dispatcher["get_block"] = lambda blknum: rlp.encode(child_chain.get_block(blknum), Block).hex()
-    dispatcher["withdraw_utxo"] = lambda blknum, txindex, oindex, tx, proof, sigs, owner, gcnum: child_chain.withdraw_utxo(blknum, txindex, oindex, rlp.decode(utils.decode_hex(tx), Transaction), utils.decode_hex(proof), utils.decode_hex(sigs), owner.hex(), gcnum)
+    def catch_withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs, owner, gcnum):
+        return child_chain.withdraw_utxo(blknum, txindex, oindex, rlp.decode(utils.decode_hex(tx), Transaction), 0, 0, owner, gcnum)
+        #return child_chain.withdraw_utxo(blknum, txindex, oindex, rlp.decode(utils.decode_hex(tx), Transaction), utils.decode_hex(proof), utils.decode_hex(sigs), owner, gcnum)
+    dispatcher["withdraw_utxo"] = catch_withdraw_utxo
+
     response = JSONRPCResponseManager.handle(
         request.data, dispatcher)
     return Response(response.json, mimetype='application/json')

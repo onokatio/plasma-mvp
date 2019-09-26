@@ -50,4 +50,4 @@ class ChildChainService(object):
         return self.send_request("get_current_block_num", [])
 
     def withdraw_utxo(self, blknum, txindex, oindex, tx, proof, sigs, owner, gcnum):
-        return self.send_request("withdraw_utxo", [blknum, txindex, oindex, irlp.encode(tx, Transaction), proof.hex(), sigs.hex(), owner.hex(), gcnum]):
+        return self.send_request("withdraw_utxo", [blknum, txindex, oindex, rlp.encode(tx, Transaction).hex(), proof.hex(), sigs.hex(), owner, gcnum])

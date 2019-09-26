@@ -170,9 +170,9 @@ def withdraw(obj,
     sigs = tx.sig1 + tx.sig2 + confirmSig1 + confirmSig2
 
     if obj['gc']:
-        client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
+        Client().withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs, owner, obj['gcnum'])
     else:
-        Client().withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs, owner)
+        client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
     print("Submitted withdraw")
 
 
