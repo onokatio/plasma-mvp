@@ -97,9 +97,9 @@ class Chain(object):
                 raise TxAlreadySpentException('failed to validate tx')
 
             if not valid_signature:
-                print(tx.sig1)
-                print(tx.sender1)
-                print(input_tx.newowner1)
+                print(tx.sig1.hex())
+                print(tx.sender1.hex())
+                print(input_tx.newowner1.hex())
                 raise InvalidTxSignatureException('failed to validate tx')
 
         if not tx.is_deposit_transaction and input_amount < output_amount:

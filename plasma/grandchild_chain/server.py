@@ -10,7 +10,7 @@ from plasma_core.block import Block
 from plasma_core.transaction import Transaction
 from plasma_core.utils.transactions import encode_utxo_id
 
-child_chain = GrandChildChain(AUTHORITY['address'], "0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26")
+child_chain = GrandChildChain(AUTHORITY['address'], "0xfd02EcEE62797e75D86BCff1642EB0844afB28c7")
 
 
 @Request.application

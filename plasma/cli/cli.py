@@ -117,6 +117,7 @@ def sendtx(obj,
     if key2:
         tx.sign2(utils.normalize_key(key2))
 
+    tx.dump()
     client_call(client.apply_transaction, [tx], "Sent transaction")
 
 

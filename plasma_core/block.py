@@ -52,6 +52,7 @@ class Block(rlp.Serializable):
 
     def add_transaction(self, tx):
         self.transaction_set.append(tx)
+        print("transaction append. index is ", len(self.transaction_set) - 1)
         inputs = [(tx.blknum1, tx.txindex1, tx.oindex1), (tx.blknum2, tx.txindex2, tx.oindex2)]
         for i in inputs:
             input_id = encode_utxo_id(*i)
