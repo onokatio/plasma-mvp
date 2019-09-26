@@ -6,7 +6,7 @@ from plasma_core.block import Block
 from plasma_core.chain import Chain
 from plasma_core.utils.transactions import get_deposit_tx, encode_utxo_id
 from plasma_core.transaction import Transaction, UnsignedTransaction
-from plasma_core.constants import NULL_ADDRESS
+from plasma_core.constants import NULL_ADDRESS, NULL_BYTE
 from plasma.client.client import Client
 
 class GrandChildChain(object):
@@ -56,20 +56,23 @@ class GrandChildChain(object):
 
         #print("block number is ", block.number)
         #print("grandchild block number is ", current_parent_block)
-        if gcnum == 0:
+        #state = client.get_block(block.number-1000).transaction_set[0].state
+        if client.get_block(gcnum).transaction_set[0].state == NULL_BYTE:
+            print("Create new utxo contract state")
             state = []
         else:
-            #state = client.get_block(block.number-1000).transaction_set[0].state
-            state = client.get_block(gcnum).transaction_set[0].state
+            state_string = client.get_block(gcnum).transaction_set[0].state
+            print("before state:", state_string)
+            state = json.loads(state_string)
 
         # Submit state update from grand child chain to child chain
-        #state = []
         state.append(base64.b64encode(block.merkle.root).decode('utf-8'))
+        print("after state:", state)
 
         tx = Transaction(gcnum, 0, 0,
                          0, 0, 0,
                          utils.normalize_address(NULL_ADDRESS),
-                         utils.normalize_address(self.utxo_contract), 50,
+                         utils.normalize_address(self.utxo_contract), 100,
                          utils.normalize_address(NULL_ADDRESS), 0,
                          0x01, json.dumps(state))
         tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))

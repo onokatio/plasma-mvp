@@ -1,3 +1,4 @@
+import pprint
 from plasma_core.utils.transactions import decode_utxo_id, encode_utxo_id
 from plasma_core.utils.address import address_to_hex
 from plasma_core.constants import NULL_SIGNATURE
@@ -25,6 +26,7 @@ class Chain(object):
 
             # Insert the block into the chain.
             self._apply_block(block)
+            #pprint.pprint(self.blocks)
             print("add_block self.blocks {0}".format(self.blocks))
 
             # Update the head state.
@@ -95,6 +97,9 @@ class Chain(object):
                 raise TxAlreadySpentException('failed to validate tx')
 
             if not valid_signature:
+                print(tx.sig1)
+                print(tx.sender1)
+                print(input_tx.newowner1)
                 raise InvalidTxSignatureException('failed to validate tx')
 
         if not tx.is_deposit_transaction and input_amount < output_amount:
