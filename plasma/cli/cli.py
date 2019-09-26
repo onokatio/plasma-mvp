@@ -168,7 +168,10 @@ def withdraw(obj,
         confirmSig2 = confirm_tx(tx, block.merkle.root, utils.normalize_key(key2))
     sigs = tx.sig1 + tx.sig2 + confirmSig1 + confirmSig2
 
-    client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
+    if obj['gc']:
+        client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
+    else:
+        client.withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs)
     print("Submitted withdrawal")
 
 

@@ -61,6 +61,9 @@ class Client(object):
         bond = 1234567890
         self.root_chain.startExit(utxo_pos, encoded_transaction, proof, sigs, transact={'from': owner_addr, 'value': bond})
 
+    def withdraw_utxo(self, blknum, txindex, oindex, tx, proof, sigs):
+        self.child_chain.withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs)
+
     def withdraw_deposit(self, owner, deposit_pos, amount):
         print("wd utxo_pos {0}".format(deposit_pos))
         print("wd amount {0}".format(amount))
