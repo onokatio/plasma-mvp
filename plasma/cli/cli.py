@@ -147,10 +147,11 @@ def submitblock(obj, key):
 @click.argument('oindex', required=True, type=int)
 @click.argument('key1')
 @click.argument('key2', required=False)
+@click.argument('owner', required=False)
 @click.pass_obj
 def withdraw(obj,
              blknum, txindex, oindex,
-             key1, key2):
+             key1, key2, owner):
 
     client = obj['client']
     # Get the transaction's block, already decoded by client
@@ -171,7 +172,7 @@ def withdraw(obj,
     if obj['gc']:
         client.withdraw(blknum, txindex, oindex, tx, proof, sigs)
     else:
-        Client().withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs)
+        Client().withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs, owner)
     print("Submitted withdraw")
 
 

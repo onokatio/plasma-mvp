@@ -1,3 +1,4 @@
+from ethereum.utils import sha3
 from plasma_core.block import Block
 from plasma_core.chain import Chain
 from plasma_core.utils.transactions import get_deposit_tx, encode_utxo_id
@@ -59,6 +60,17 @@ class ChildChain(object):
     def get_current_block(self):
         return self.current_block
 
-    def withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs):
-        # check and exit.
-        
+    def withdraw_utxo(blknum, txindex, oindex, tx, proof, sigs, owner, gcnum):
+        # TODO: check merkle proof
+
+        state_string = self.get_block(gcnum).transaction_set[0].state
+
+        tx = Transaction(gcnum, 0, 0,
+                         0, 0, 0,
+                         utils.normalize_address(NULL_ADDRESS),
+                         utils.normalize_address(self.utxo_contract), 0,
+                         utils.normalize_address(owner), 100,
+                         0x01, state_string)
+        tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))
+
+        self.apply_transaction(tx)
