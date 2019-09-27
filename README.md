@@ -83,7 +83,7 @@ python plasma/cli/cli.py deposit 100 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26
 
 ### 3. Create UTXO contract and use
 
-#### 3-1. deposit 0 and create UTXO contract
+#### 3-0. deposit 0 and create UTXO contract
 
 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 is contract address.
 Only operator can make contract address.
@@ -102,7 +102,8 @@ deposit 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 to 0xfd02EcEE62797e75D86BCff1
 python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 b937b2c6a606edf1a4d671485f0fa61dcc5102e1ebca392f5a8140b23a8ac04f 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 
-python plasma/cli/cli.py --gc apply_deposit_utxo 2000 0 0
+python plasma/cli/cli.py --gc --gcnum 1000 apply_deposit_utxo 2000 0 0
+python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
 UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 1000-0-0(100wei)
