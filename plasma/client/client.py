@@ -41,8 +41,8 @@ class Client(object):
         print("Owner Address {0}".format(owner))
         self.root_chain.deposit(transact={'from': owner, 'value': amount})
 
-    def apply_deposit_utxo(self, blknum, txindex, oindex, transaction):
-        self.child_chain.apply_deposit_utxo(blknum, txindex, oindex, transaction)
+    def apply_deposit_utxo(self, blknum, txindex, oindex, transaction, gcnum):
+        self.child_chain.apply_deposit_utxo(blknum, txindex, oindex, transaction, gcnum)
 
     def apply_transaction(self, transaction):
         self.child_chain.apply_transaction(transaction)

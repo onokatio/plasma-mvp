@@ -67,7 +67,7 @@ def apply_deposit_utxo(obj,
     #    obj['client'].apply_deposit_utxo(deposit_tx)
     #else:
     #    print("Error: contractFlag is not 0x00.")
-    obj['client'].apply_deposit_utxo(blknum, txindex, oindex, deposit_tx)
+    obj['client'].apply_deposit_utxo(blknum, txindex, oindex, deposit_tx, obj['gcnum'])
 
 @cli.command()
 @click.argument('blknum1', type=int)
