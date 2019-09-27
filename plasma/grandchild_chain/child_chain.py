@@ -69,10 +69,12 @@ class GrandChildChain(object):
         state.append(base64.b64encode(block.merkle.root).decode('utf-8'))
         print("after state:", state)
 
+        contract_balance = self.get_block(gcnum).transaction_set[0].amount1
+
         tx = Transaction(gcnum, 0, 0,
                          0, 0, 0,
                          utils.normalize_address(NULL_ADDRESS),
-                         utils.normalize_address(self.utxo_contract), 100,
+                         utils.normalize_address(self.utxo_contract), contract_balance,
                          utils.normalize_address(NULL_ADDRESS), 0,
                          0x01, json.dumps(state))
         tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))
