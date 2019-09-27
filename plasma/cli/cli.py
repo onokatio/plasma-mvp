@@ -56,7 +56,7 @@ def deposit(obj, amount, address):
 @click.pass_obj
 def apply_deposit_utxo(obj,
         blknum, txindex, oindex):
-    # tell lower chain that there is deposit transaction.
+    # tell lower chain that there is new deposit transaction.
 
     deposit_pos = encode_utxo_id(blknum, txindex, oindex)
     deposit_tx = obj['client'].get_transaction(blknum,txindex)
