@@ -68,29 +68,41 @@ $ python ./plasma/child_chain/server.py
 $ python ./plasma/grandchild_chain/server.py
 ```
 
-### 2. Start by depositing:
-```
-# deposit 100 wei to child chain.
-# it can be used in child chain at `1 0 0`(blknum1 txindex1 oindex1)
-python plasma/cli/cli.py deposit 100 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26
-```
 
+### Start by deposit:
+
+Deposit 100 wei to child chain.
+It can be used in child chain at `1 0 0`(blknum1 txindex1 oindex1)
 blknum1, txindex1, oindex1 is a point of UTXO. blknum is block number, txindex is transaction number, and oindex is output number of transaction.
 There are two point (such as blknum1 blknum2) and two newowner. So we can use two input and two outpu maximam.
 
+```
+python plasma/cli/cli.py deposit 100 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26
+```
+
+
 ### 3. Create UTXO contract and use
 
-#### 3-1. deposit 100 and create UTXO contract
+#### 3-1. deposit 0 and create UTXO contract
 
 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 is contract address.
 Only operator can make contract address.
 
-```
-# deposit 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 to 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
-python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 b937b2c6a606edf1a4d671485f0fa61dcc5102e1ebca392f5a8140b23a8ac04f 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[]}'
 
+```
+python plasma/cli/cli.py deposit 0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
+python plasma/cli/cli.py sendtx 2 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 0 0x0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0x01 '{[]}'
 python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
-python plasma/cli/cli.py apply_deposit_utxo todo
+```
+
+#### 3-1. deposit 100 to UTXO contract
+
+deposit 0x4B3eC6c9dC67079E82152d6D55d8dd96a8e6AA26 to 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7
+```
+python plasma/cli/cli.py sendtx 1 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 100 0x0 0 b937b2c6a606edf1a4d671485f0fa61dcc5102e1ebca392f5a8140b23a8ac04f 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
+python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
+
+python plasma/cli/cli.py --gc apply_deposit_utxo 2000 0 0
 ```
 
 UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 1000-0-0(100wei)
