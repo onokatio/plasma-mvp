@@ -13,6 +13,7 @@ Grand Child Chain operator: 8547
 
 `contract_data` : ABI that exported by solc
 `plasma_core/` : plasma data structure library. define block and transaction.
+`plasma_core/constants.py` : Account public key and private key list. Use these for <key> argument.
 `plasma/root_chain` : Solidity contract
 `plasma/child_chain` : Child chain operator. Run as jsonrpc server. It can also makes transaction.
 `plasma/grandchild_chain` : Grand Child chain operator. Run as jsonrpc server. It can also makes transaction.
