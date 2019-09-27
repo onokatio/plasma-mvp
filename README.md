@@ -135,18 +135,14 @@ python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a
 ### 4. send inside child chain.
 
 ```
-python ./plasma/cli/cli.py sendtx 4000 0 1 0 0 0 0x0 0xda20A48913f9031337a5e32325F743e8536860e2 100 0x0 0 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f
+python ./plasma/cli/cli.py sendtx 5000 0 1 0 0 0 0x0 0xda20A48913f9031337a5e32325F743e8536860e2 100 0x0 0 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f
 python ./plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
-# Withdraw the original deposit (this is a double spend!):
+# Withdraw to root chain
 
 ```
-python ./plasma/cli/cli.py withdrawdeposit 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 1 60
 python ./plasma/cli/cli.py withdraw 6000 0 0 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f
 ```
-
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 6-0-0(40wei)
 
 Note: The functionality to challenge double spends from the cli is still being worked on.
