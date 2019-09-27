@@ -68,7 +68,6 @@ class ChildChain(object):
 
         state_string = self.get_block(gcnum).transaction_set[0].state
         contract_balance = self.get_block(gcnum).transaction_set[0].amount1
-        contract_balance = 100
 
         tx = Transaction(gcnum, 0, 0,
                          0, 0, 0,

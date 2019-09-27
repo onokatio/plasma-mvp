@@ -103,6 +103,8 @@ class Chain(object):
                 raise InvalidTxSignatureException('failed to validate tx')
 
         if not tx.is_deposit_transaction and input_amount < output_amount:
+            print("input amount:", input_amount)
+            print("output amount:", output_amount)
             raise TxAmountMismatchException('failed to validate tx')
 
     def get_block(self, blknum):

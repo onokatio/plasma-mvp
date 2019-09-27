@@ -138,8 +138,6 @@ withdraw 0xda20A48913f9031337a5e32325F743e8536860e2's 100wei
 ```
 python ./plasma/cli/cli.py --gc --gcnum 2000 withdraw 1000 0 0 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304 0xda20A48913f9031337a5e32325F743e8536860e2
 python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
-python plasma/cli/cli.py --gc --gcnum 3000 submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
-python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
 ### 4. exit 10wei to root chain
