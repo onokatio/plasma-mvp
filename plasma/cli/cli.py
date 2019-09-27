@@ -59,14 +59,15 @@ def apply_deposit_utxo(obj,
     # tell lower chain that there is new deposit transaction.
 
     deposit_pos = encode_utxo_id(blknum, txindex, oindex)
-    deposit_tx = obj['client'].get_transaction(blknum,txindex)
+    deposit_tx = Client().get_transaction(blknum,txindex)
 
     # TODO: assert transaction whose newowner is UTXO contract.
 
-    if deposit_tx.contractFlag != 0x00:
-        obj['client'].apply_deposit_utxo(deposit_tx)
-    else:
-        print("Error: contractFlag is not 0x00.")
+    #if deposit_tx.contractFlag != 0x00:
+    #    obj['client'].apply_deposit_utxo(deposit_tx)
+    #else:
+    #    print("Error: contractFlag is not 0x00.")
+    obj['client'].apply_deposit_utxo(blknum, txindex, oindex, deposit_tx)
 
 @cli.command()
 @click.argument('blknum1', type=int)

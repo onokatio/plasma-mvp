@@ -29,7 +29,7 @@ class ChildChainService(object):
         return self.send_request("apply_transaction", [rlp.encode(transaction, Transaction).hex()])
 
     def apply_deposit_utxo(self, transaction):
-        return self.send_request("apply_deposit_utxo", [rlp.encode(transaction, Transaction).hex()])
+        return self.send_request("apply_deposit_utxo", [blknum, txindex, oindex, rlp.encode(transaction, Transaction).hex()])
 
     def submit_block(self, block):
         return self.send_request("submit_block", [rlp.encode(block, Block).hex()])

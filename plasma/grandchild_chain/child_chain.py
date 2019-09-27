@@ -26,8 +26,8 @@ class GrandChildChain(object):
         utxo_id = event_args['utxoPos']
         self.chain.mark_utxo_spent(utxo_id)
 
-    def apply_deposit_utxo(self, deposit_tx):
-        print("apply deposit {0}".format(event['args']))
+    def apply_deposit_utxo(self, blknum, txindex, oindex, deposit_tx):
+        #print("apply deposit {0}".format(event['args']))
         #owner = event_args['depositor']
         #amount = event_args['amount']
         #blknum = event_args['depositBlock']
@@ -39,6 +39,30 @@ class GrandChildChain(object):
 
         deposit_block = Block([deposit_tx])
         self.chain.add_block(deposit_block)
+
+        print("update UTXO contract and use deposit tx as input")
+        client = Client()
+        state_string = client.get_block(gcnum).transaction_set[0].state
+        print("before state:", state_string)
+        state = json.loads(state_string)
+
+        # Submit state update from grand child chain to child chain
+        state.append(base64.b64encode(block.merkle.root).decode('utf-8'))
+        print("after state:", state)
+
+        contract_balance = self.get_block(gcnum).transaction_set[0].amount1
+        contract_balance += deposit_tx.amount1
+
+        tx = Transaction(gcnum, 0, 0,
+                         blknum, txindex, oindex,
+                         utils.normalize_address(NULL_ADDRESS),
+                         utils.normalize_address(self.utxo_contract), contract_balance,
+                         utils.normalize_address(NULL_ADDRESS), 0,
+                         0x01, json.dumps(state))
+        tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))
+
+        client.apply_transaction(tx)
+        print("Sent state update transaction")
 
     def apply_transaction(self, tx):
         print("spent_utxos {0}".format(self.current_block.spent_utxos))
