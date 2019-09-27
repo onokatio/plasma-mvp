@@ -67,12 +67,13 @@ class ChildChain(object):
         # TODO: check merkle proof
 
         state_string = self.get_block(gcnum).transaction_set[0].state
+        contract_balance = self.get_block(gcnum).transaction_set[0].amount1
 
         tx = Transaction(gcnum, 0, 0,
                          0, 0, 0,
                          utils.normalize_address(NULL_ADDRESS),
                          utils.normalize_address("0xfd02EcEE62797e75D86BCff1642EB0844afB28c7"), 0,
-                         utils.normalize_address(owner), 100,
+                         utils.normalize_address(owner), contract_balance,
                          0x01, state_string)
         tx.sign1(utils.normalize_key("3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304"))
 
