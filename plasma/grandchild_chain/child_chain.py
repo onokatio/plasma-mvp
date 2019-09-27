@@ -32,8 +32,12 @@ class GrandChildChain(object):
         #amount = event_args['amount']
         #blknum = event_args['depositBlock']
 
-        #deposit_tx = get_deposit_tx(owner, amount)
-        deposit_block = Block([deposit_tx], number=blknum)
+        # create transaction which have (0 0 0) input. 
+        deposit_tx = get_deposit_tx(deposit_tx.newowner1, deposit_tx.amount1)
+        print("create null input transaction")
+        print("amount: ", deposit_tx.amount1)
+
+        deposit_block = Block([deposit_tx])
         self.chain.add_block(deposit_block)
 
     def apply_transaction(self, tx):

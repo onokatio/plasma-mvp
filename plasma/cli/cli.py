@@ -60,6 +60,9 @@ def apply_deposit_utxo(obj,
 
     deposit_pos = encode_utxo_id(blknum, txindex, oindex)
     deposit_tx = obj['client'].get_transaction(blknum,txindex)
+
+    # TODO: assert transaction whose newowner is UTXO contract.
+
     if deposit_tx.contractFlag != 0x00:
         obj['client'].apply_deposit_utxo(deposit_tx)
     else:
