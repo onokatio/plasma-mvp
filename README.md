@@ -2,67 +2,40 @@
 
 This is a fork from plasma-mvp for hierarchical plasma.
 
-# Build Environment
+# Plasma on Plasma
 
-```
-$ pyenv install 3.6.9
-$ python3 -m venv venv
-$ source venv/bin/activate
-```
-
-
-# Port
+## Port
 
 Child Chain operator: 8546
 Grand Child Chain operator: 8547
 
-# directory structure
+## directory structure
 
-`contract_data` : ABI
+`contract_data` : ABI that exported by solc
 `plasma_core/` : plasma data structure library. define block and transaction.
 `plasma/root_chain` : Solidity contract
 `plasma/child_chain` : Child chain operator. Run as jsonrpc server. It can also makes transaction.
-`plasma/client` : Python library to call `plasma/child_chain` server.
+`plasma/grandchild_chain` : Grand Child chain operator. Run as jsonrpc server. It can also makes transaction.
+`plasma/client` : Python library to call jsonrpc of `plasma/child_chain` server.
 `plasma/cli` : command line tool. It just use client library.
 
-# UTXO contract state
+## transaction specifications
+
+### tx.contractflag
+
+`0x00`: normal transaction
+`0x01`: UTXO contract transaction
+
+### tx.state
+
+defined as json string.
 
 ```
 {[
 	{"root": 0x123456789...123456789 , "timestamp": 1569312178},
+	{"root": 0x123456789...123456790 , "timestamp": 1569312179},
 }}
 ```
-
-# Notice!
-This is an old research repo. No active work is being done here. Efforts in the direction of production-ready MVP plasma chain (MoreVP, ERC20, audits) are in https://github.com/omisego/plasma-contracts.
-
-# Plasma MVP
-
-We're implementing [Minimum Viable Plasma](https://ethresear.ch/t/minimal-viable-plasma/426). This repository represents a work in progress and will undergo large-scale modifications as requirements change.
-
-## Overview
-
-Plasma MVP is split into four main parts: `root_chain`, `child_chain`, `client`, and `cli`. Below is an overview of each sub-project.
-
-### root_chain
-
-`root_chain` represents the Plasma contract to be deployed to the root blockchain. In our case, this contract is written in Solidity and is designed to be deployed to Ethereum. `root_chain` also includes a compilation/deployment script.
-
-`RootChain.sol` is based off of the Plasma design specified in [Minimum Viable Plasma](https://ethresear.ch/t/minimal-viable-plasma/426). Currently, this contract allows a single authority to publish child chain blocks to the root chain. This is *not* a permanent design and is intended to simplify development of more critical components in the short term.
-
-### child_chain
-
-`child_chain` is a Python implementation of a Plasma MVP child chain client. It's useful to think of `child_chain` as analogous to [Parity](https://www.parity.io) or [Geth](https://geth.ethereum.org). This component manages a store of `Blocks` and `Transactions` that are updated when events are fired in the root contract.
-
-`child_chain` also contains an RPC server that enables client interactions. By default, this server runs on port `8546`.
-
-### client
-
-`client` is a simple Python wrapper of the RPC API exposed by `child_chain`, similar to `Web3.py` for Ethereum. You can use this client to write Python applications that interact with this Plasma chain.
-
-### cli
-
-`cli` is a simple Python application that uses `client` to interact with `child_chain`, via the command line. A detailed documentation of `cli` is available [here](#cli-documentation).
 
 ## Getting Started
 
@@ -80,13 +53,18 @@ This project has a few pre-installation dependencies.
 
 Let's play around a bit:
 
-### 1. Deploy the root chain contract and start the child chain as per [Starting Plasma](#starting-plasma).
+### 1. Deploy the root chain contract and start the child chain , grand child chain.
+
 ```
+$ pyenv install 3.6.9
+$ python3 -m venv venv
+$ source venv/bin/activate
 $ make clean
 $ make
 $ ganache-cli -m=plasma_mvp
 $ make root-chain
 $ python ./plasma/child_chain/server.py
+$ python ./plasma/grandchild_chain/server.py
 ```
 
 ### 2. Start by depositing:
