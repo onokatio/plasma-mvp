@@ -42,6 +42,12 @@ class ChildChain(object):
         self.chain.add_block(deposit_block)
 
     def apply_transaction(self, tx):
+        print("transaction applyed.")
+        print("input1: ", tx.blknum1, tx.txindex1, tx.oindex1)
+        print("input2: ", tx.blknum2, tx.txindex2, tx.oindex2)
+        print("newowner1: ", utils.decode_hex(tx.newowner1), tx.amount1)
+        print("newowner2: ", utils.decode_hex(tx.newowner2), tx.amount2)
+        print("contractFlag, state: ", tx.contractFlag, tx.state)
         print("spent_utxos {0}".format(self.current_block.spent_utxos))
         self.chain.validate_transaction(tx, self.current_block.spent_utxos)
         self.current_block.add_transaction(tx)
