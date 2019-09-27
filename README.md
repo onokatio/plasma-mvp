@@ -140,24 +140,18 @@ python ./plasma/cli/cli.py --gc --gcnum 2000 withdraw 1000 0 0 3bb369fecdc16b93b
 python plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
-### 4. exit 10wei to root chain
+### 4. send inside child chain.
 
 ```
-python plasma/cli/cli.py sendtx 2000 0 0 0 0 0 0x0 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 0 0xda20A48913f9031337a5e32325F743e8536860e2 100 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304'
-```
-
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 2-0-0(50wei) 6-0-1(10wei)
-UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 6-0-0(40wei)
-
-4.  Submit the block:
-```
+python ./plasma/cli/cli.py sendtx 3000 0 1 0 0 0 0x0 0xda20A48913f9031337a5e32325F743e8536860e2 100 0x0 0 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f
 python ./plasma/cli/cli.py submitblock 3bb369fecdc16b93b99514d8ed9c2e87c5824cf4a6a98d2e8e91b7dd0c063304
 ```
 
-5. Withdraw the original deposit (this is a double spend!):
+# Withdraw the original deposit (this is a double spend!):
 
 ```
 python ./plasma/cli/cli.py withdrawdeposit 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 1 60
+python ./plasma/cli/cli.py withdraw 4000 0 0 999ba3f77899ba4802af5109221c64a9238a6772718f287a8bd3ca3d1b68187f
 ```
 
 UTXO that 0xfd02EcEE62797e75D86BCff1642EB0844afB28c7 has : 
