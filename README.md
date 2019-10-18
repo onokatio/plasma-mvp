@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/onokatio/plasma-mvp.svg?branch=master)](https://travis-ci.org/onokatio/plasma-mvp)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonokatio%2Fplasma-on-plasma.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonokatio%2Fplasma-on-plasma?ref=badge_shield)
 
 This is a fork from plasma-mvp for hierarchical plasma.
 
@@ -146,3 +147,7 @@ python ./plasma/cli/cli.py withdraw 6000 0 0 999ba3f77899ba4802af5109221c64a9238
 ```
 
 Note: The functionality to challenge double spends from the cli is still being worked on.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonokatio%2Fplasma-on-plasma.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonokatio%2Fplasma-on-plasma?ref=badge_large)
