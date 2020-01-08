@@ -19,7 +19,7 @@ setup(
         'ethereum==2.3.0',
         'web3==4.5.0',
         'werkzeug==0.14.1',
-        'json-rpc==1.10.8',
+        'json-rpc==1.13.0',
         'py-solc',
         'pytest-cov',
         'click==6.7',
