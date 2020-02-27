@@ -2,7 +2,6 @@
 from setuptools import find_packages
 from setuptools import setup
 
-
 with open("README.md") as f:
     readme = f.read()
 
@@ -26,5 +25,7 @@ setup(
         "flake8==3.5.0",
         "rlp==0.6.0",
     ],
-    entry_points={"console_scripts": ["omg=plasma.cli:cli"],},
+    entry_points={
+        "console_scripts": ["omg=plasma.cli:cli"],
+    },
 )
