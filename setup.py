@@ -25,5 +25,7 @@ setup(
         "flake8==3.8.2",
         "rlp==0.6.0",
     ],
-    entry_points={"console_scripts": ["omg=plasma.cli:cli"],},
+    entry_points={
+        "console_scripts": ["omg=plasma.cli:cli"],
+    },
 )
