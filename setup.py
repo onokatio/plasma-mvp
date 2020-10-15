@@ -24,7 +24,7 @@ setup(
         'pytest-cov',
         'click==6.7',
         'flake8==3.5.0',
-        'rlp==0.6.0'
+        'rlp==2.0.0'
     ],
     entry_points={
         'console_scripts': ["omg=plasma.cli:cli"],
