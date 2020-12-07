@@ -24,7 +24,7 @@ setup(
         'click==6.7',
         'pytest',
         'flake8==3.5.0',
-        'rlp==0.6.0'
+        'rlp==2.0.1'
     ],
     entry_points={
         'console_scripts': ["omg=plasma.cli:cli"],
