@@ -23,7 +23,7 @@ setup(
         'py-solc',
         'click==6.7',
         'pytest',
-        'flake8==3.5.0',
+        'flake8==3.8.4',
         'rlp==0.6.0'
     ],
     entry_points={
