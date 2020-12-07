@@ -21,7 +21,7 @@ setup(
         'werkzeug==0.14.1',
         'json-rpc==1.10.8',
         'py-solc',
-        'click==6.7',
+        'click==7.1.2',
         'pytest',
         'flake8==3.5.0',
         'rlp==0.6.0'
